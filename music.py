@@ -21,7 +21,8 @@ def parse_args():
     parser.add_argument('-a', '--authors', action='store_true')
 
     parser.add_argument('--yandex-oauth', type=str)
-    parser.add_argument('--spotify-oauth', type=str)
+    parser.add_argument('--spotify-client-id', type=str)
+    parser.add_argument('--spotify-secret-key', type=str)
 
     subparsers = parser.add_subparsers(dest='command')
     download_parser = subparsers.add_parser('download')
@@ -47,11 +48,14 @@ def main():
                 print('need a yandex-oauth token')
                 sys.exit(1)
             
-            print('download from yandex...')
+            yandex_download(args.link, args.yandex_oauth)
         
         elif 'spotify.com' in args.link:
-            print('download from spotify...')
-            spotify_download(args.link)
+            if not args.spotify_client_id or not args.spotify_secret_key:
+                print('need a client-id and secret-key')
+                sys.exit(1)
+
+            spotify_download(args.link, args.spotify_client_id, args.spotify_secret_key)
 
     else:
         help()
