@@ -1,6 +1,7 @@
 from commands.help import help
 from commands.version import version
 from commands.authors import authors
+from commands.spotify_download import spotify_download
 
 import argparse
 import sys
@@ -47,11 +48,15 @@ def main():
             print('download from yandex...')
         
         elif 'spotify.com' in args.link:
-            if not args.spotify_oauth:
-                print('need a spotify-oauth token')
-                sys.exit(1)
+            # if not args.spotify_oauth:
+            #     print('need a spotify-oauth token')
+            #     sys.exit(1)
 
             print('download from spotify...')
+
+            spotify_download(args.link)
+
+
 
     else:
         help()
