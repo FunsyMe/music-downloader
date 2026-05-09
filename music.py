@@ -5,12 +5,10 @@ from commands.authors import authors
 import argparse
 import sys
 
-
 class MusicArgumentParser(argparse.ArgumentParser):
     def error(self, _):
         help()
         sys.exit(0)
-
 
 def parse_args():
     parser = MusicArgumentParser(add_help=False)
@@ -27,7 +25,6 @@ def parse_args():
 
     download_parser.add_argument('link')
     return parser.parse_args()
-
 
 def main():
     args = parse_args()
