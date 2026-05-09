@@ -6,11 +6,11 @@ load_dotenv()
 
 
 def spotify_download(url: str):
-    client_id = os.getenv("SPOTIFY_CLIENT_ID")
-    secret_key = os.getenv("SPOTIFY_SECRET_KEY")
+    client_id = str(os.getenv("SPOTIFY_CLIENT_ID"))
+    secret_key = str(os.getenv("SPOTIFY_SECRET_KEY"))
     client = spotdl.SpotifyClient.init(
-        "",
-        "",
+        client_id=client_id,
+        client_secret=secret_key,
         user_auth=True,
     )
     song = spotdl.Song.from_url(url=url)
